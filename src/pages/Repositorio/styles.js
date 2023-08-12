@@ -53,6 +53,18 @@ export const Backbutton = styled(Link)`
     background: transparent;
 `
 
+export const Controle = styled.div`
+margin: 15px 0;
+
+button{
+    outline: none;
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0 3px;
+}
+`;
+
 export const IssuesList = styled.ul`
     margin-top: 30px;
     padding-top: 30px;
@@ -108,4 +120,25 @@ export const IssuesList = styled.ul`
             }
         }
     }
+`
+
+export const PageActions = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button{
+        outline: none;
+        border: none;
+        background: #222;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+
+        &:disabled{
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+
 `
