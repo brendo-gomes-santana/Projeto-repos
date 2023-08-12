@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from "react-icons/fa";
 import { Container, Form, SubmitButton, List, DeleteButton } from "./styles.js";
+import { Link } from "react-router-dom";
 import api from "../../services/api.js";
 
 export default function Main() {
@@ -8,6 +9,23 @@ export default function Main() {
   const [repositorios, setRepositorios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
+
+
+  //Buscar
+  useEffect(() => {
+    const repos = JSON.parse(localStorage.getItem('repos'))
+
+    if(repos){
+      setRepositorios(repos)
+    }
+  },[])
+
+  
+  //Salvar Alteração
+  useEffect(() => {
+    localStorage.setItem('repos', JSON.stringify(repositorios))
+  },[repositorios])
+  
 
   const handleSubmit = useCallback(
     (e) => {
@@ -84,9 +102,9 @@ export default function Main() {
               </DeleteButton>
               {repos.nome}
             </span>
-            <a href="###">
+            <Link to={`/repositorio/${encodeURIComponent(repos.nome)}`}>
               <FaBars size={20} />
-            </a>
+            </Link>
           </li>
         ))}
       </List>
